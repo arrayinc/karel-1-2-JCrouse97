@@ -28,18 +28,32 @@ function down() {
 	turnLeft();
 }
 
-function drop(){
+function checkFill(){
 	down();
-	putBeeper();
+	if(noBeepersPresent()) {
+		putBeeper();
+		up();
+	} else {
 	up();
+	}
 }
 
-function FixPotHole(){
+function checkPothole() {
+	if(rightIsClear()) {
+		checkFill();
+	} else {
 	right();
-	drop();
+	}
+}
+
+
+
+function FixPothole(){
+	right();
+	checkPothole();
 	right();
 	right();
 	right();
-	drop();
+	checkPothole();
 	right();
 }
